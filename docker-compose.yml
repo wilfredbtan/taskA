@@ -2,7 +2,7 @@ version: "3.7"
 services:
   nginx:
     restart: always
-    build:
+    build: 
       dockerfile: Dockerfile
       context: ./nginx
     ports:
@@ -13,21 +13,16 @@ services:
   api:
     container_name: api
     restart: always
-    build:
+    build: 
       dockerfile: Dockerfile
-      context: ./server
-    volumes:
-      - ./server:/app
-      - /app/node_modules
+      context: ./backend
+    ports:
+      - 5000:5000
   client:
-    stdin_open: true
     container_name: client
     restart: always
-    build:
+    build: 
       dockerfile: Dockerfile
       context: ./frontend
-    volumes:
-      - ./frontend:/app
-      - /app/node_modules
     ports:
       - 3000:3000
